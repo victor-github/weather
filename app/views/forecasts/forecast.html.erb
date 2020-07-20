@@ -1,0 +1,20 @@
+<%= form_with(url: '/forecast', method: 'get', local: true) do %>
+  <%= label_tag(:location, "Address: ") %>
+  <%= text_field_tag(:location) %>
+  <%= submit_tag "Get Temperature" %>
+<% end %>
+
+<% if !params[:location].nil? %>
+
+  <% if @resp.nil? %>
+    Error: Invalid Address
+  <% else %>
+    <p>Current temperature at location: <%= @resp %></p>
+    <% if !@fresh %>
+         <p>Value coming from cache</p>
+    <% end %>
+  <% end %>
+  
+<% end %>
+    
+
